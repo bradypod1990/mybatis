@@ -7,4 +7,6 @@ import com.feng.mybatis.model.User;
 public interface UserService {
 
 	public List<User> findAll();
+	
+	public void addUser(User user);
 }

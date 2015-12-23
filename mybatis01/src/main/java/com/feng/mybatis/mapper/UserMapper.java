@@ -8,4 +8,6 @@ public interface UserMapper {
 
 	
 	public List<User> findAll();
+	
+	public void addUser(User user);
 }

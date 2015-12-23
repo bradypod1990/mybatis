@@ -16,7 +16,7 @@ import com.feng.mybatis.service.UserService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
 @ContextConfiguration(locations={"classpath:spring-mybatis.xml"})
-@TransactionConfiguration(transactionManager="transactionManager")
+@TransactionConfiguration(transactionManager="transactionManager",defaultRollback=false)
 public class UserDaoTest {
 
 	@Autowired
@@ -31,5 +31,13 @@ public class UserDaoTest {
 				System.out.println(user.getName());
 			}
 		}
+	}
+	
+	@Test
+	public void addUserTest() {
+		User user = new User();
+		user.setName("zoufeng");
+		user.setPassword("zoufeng");
+		userService.addUser(user);
 	}
 }

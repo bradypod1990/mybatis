@@ -20,4 +20,9 @@ public class UserServiceImpl implements UserService {
 		return userMapper.findAll();
 	}
 
+	@Override
+	public void addUser(User user) {
+		userMapper.addUser(user);
+	}
+
 }
