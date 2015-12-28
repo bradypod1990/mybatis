@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.feng.mybatis.mapper.GroupMapper">  
+
+	<resultMap type="Group" id="group">
+		<id property="id" column="g_id"/>
+		<result property="name" column="g_name"/>
+		<collection property="listStudent" ofType="Student">
+			<id property="id" column="s_id"/>
+			<result property="name" column="s_name"/>
+			<result property="age" column="s_age"/>
+		</collection>
+	</resultMap>
+
+<!--  新增记录  -->  
+   <insert id="addGroup" parameterType="Group" >  
+        insert into group(name) values(#{name})  
+    </insert>  
+    <!--  
+ 查询单条记录   
+    <select id="selectBlog" parameterType="int" resultMap="BlogResult">  
+       select * from t_blog where id = #{id}  
+    </select>  
+ 修改记录   
+    <update id="updateBlog" parameterType="Blog">  
+        update t_blog set title = #{title},content = #{content},owner = #{owner} where id = #{id}  
+    </update>   -->
+<!--  查询所有记录  -->  
+   <!--  <select id="findAll" resultType="Group">  
+        select * from t_group  
+    </select>   -->
+    <select id="findAll" resultMap="group">
+    	select g.id g_id, g.name g_name, s.id s_id, s.name s_name, s.age s_age from t_group g left join t_student s on g.id = s.group
+    </select>
+<!--  删除记录  -->  
+    <!-- <delete id="deleteBlog" parameterType="int">  
+       delete from t_blog where id = #{id}  
+    </delete>   -->
+     
+</mapper>  
