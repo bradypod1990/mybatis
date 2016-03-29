@@ -11,6 +11,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.feng.mybatis.model.Student;
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
@@ -28,7 +29,17 @@ public class StudentServiceTest {
 		
 		if(list != null) {
 			for(Student s : list) {
-				System.out.println(s.getId() + ", name:" + s.getName() + ",groupName:" + s.getGroup().getName() );
+				System.out.println(s);
+			}
+		}
+	}
+	@Test
+	public void testFindOrder() {
+		PageBounds pageBounds = new PageBounds(1, 2);
+		List<Student> list = studentService.findOrderByGroup(2, pageBounds);
+		if(list != null) {
+			for(Student s : list) {
+				System.out.println(s);
 			}
 		}
 	}
